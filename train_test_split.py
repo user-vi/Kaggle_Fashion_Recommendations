@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 def holdout(transactions_train):
-    train = transactions_train.query('t_dat < "2019-09-02"')
-    test = transactions_train.query('t_dat >= "2019-09-02"')\
+    train = transactions_train.query('t_dat < "2020-09-02"')
+    test = transactions_train.query('t_dat >= "2020-09-02"')\
         .groupby('customer_id')['article_id'].apply(list).to_frame('target').reset_index()
     return train, test
 
