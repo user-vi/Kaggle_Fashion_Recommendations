@@ -2,8 +2,11 @@ import pandas as pd
 import numpy as np
 
 def holdout(transactions_train):
-    train = transactions_train.query('t_dat < "2020-09-02"')
-    test = transactions_train.query('t_dat >= "2020-09-02"')\
+    # str to date
+    transactions_train['t_dat'] = pd.to_datetime(transactions_train['t_dat'])
+    # split
+    train = transactions_train.query('t_dat < "2020-09-16"')
+    test = transactions_train.query('t_dat >= "2020-09-16"')\
         .groupby('customer_id')['article_id'].apply(list).to_frame('target').reset_index()
     return train, test
 
